@@ -89,7 +89,7 @@ public class ControllerTest {
 	public void testSetStartPosition() {
 		con.setStartPosition(1, null);
 		assertEquals(con.getLexionSheet().getIntStartPosition(),1);
-		con.setStartPosition(0, "abcd");
+		con.setStartPosition(0, "abcd");	
 		assertEquals(con.getLexionSheet().getWord(),"abcd");
 	}
 

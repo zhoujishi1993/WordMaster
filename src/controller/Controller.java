@@ -122,7 +122,7 @@ public class Controller {
 	}
 
 	public boolean setReciteNum(int reciteNum) {
-		lexiconSheet.setReciteNum(reciteNum);
+		return lexiconSheet.setReciteNum(reciteNum);
 	}
 
 }
