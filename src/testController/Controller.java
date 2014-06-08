@@ -1,40 +1,35 @@
-package controller;
+package testController;
 
 import java.util.List;
 
-import view.Frame;
-import view.Frame.Status;
-import model.*;
+import javax.net.ssl.SSLEngineResult.Status;
+
+import model.Result;
+import controller.Caculator;
 
 /**
  * @type Controller.java
  * @author zhoujishi
- * @version
- */
+ * @version !import This class is same with the Controller class in controller
+ *          package This class is used for test and the Class name is replaced
+ *          with Stub
+ * */
 public class Controller {
-	private LexiconSheet lexiconSheet;
-	private Frame mainFrame;
-	private User user;
+	private LexiconSheetStub lexiconSheet;
+	private FrameStub mainFrame;
+	private UserStub user;
 	private int step;
-	private Result result;
-
+	private ResultStub result;
 
 	public static void main(String args[]) {
 		// Shall get the lexicon
-		//Controller con = new Controller();
+		Controller con = new Controller();
 	}
 
-/*	public Controller() {
-		mainFrame = new Frame();
-		user = new User("default");
-		lexiconSheet = new LexiconSheet();
-
-	}*/
-	
-	public Controller(Frame mainFrame){
-		   this.mainFrame = mainFrame;
-		   user = new User("default");
-		   lexiconSheet = new LexiconSheet();
+	public Controller() {
+		mainFrame = new FrameStub();
+		user = new UserStub("default");
+		lexiconSheet = new LexiconSheetStub();
 	}
 
 	/**
@@ -57,9 +52,9 @@ public class Controller {
 		String nextWord = lexiconSheet.getNextChinese();
 		if (nextWord != null) {
 			return nextWord;
-		}else{
+		} else {
 			lexiconSheet.setStartWord();
-			mainFrame.changeView(Status.END_PART);
+			mainFrame.changeView(5);
 			return null;
 		}
 	}
@@ -71,58 +66,52 @@ public class Controller {
 	 *            Frame.START, then calculate the total result of the lexicon,
 	 *            if the step == Frame.END, then calculate the current result of
 	 *            this recite
-	 * @return the accuracy, correct words, wrong words, total words of the
+	 * @return the accurancy, correct words, wrong words, total words of the
 	 *         result.
 	 */
-	public Result getResult(Status step) {
-		if (step == Status.END_TOTAL) {
+	public ResultStub getResult(int step) {
+		if (step == 4) {
 			int totalCorrect = lexiconSheet.getTotalCorrect();
 			int recitedWords = lexiconSheet.getTotalRecitedNum();
 			double accurancy = Caculator.calCorrectness(recitedWords,
 					totalCorrect);
-			result = new Result(lexiconSheet.getLexiconName(),lexiconSheet.getTotalNum(),
-					recitedWords, totalCorrect, recitedWords - totalCorrect,
-					accurancy);
+		    result = new ResultStub(lexiconSheet.getLexiconName(),
+					lexiconSheet.getTotalNum(), recitedWords, totalCorrect,
+					recitedWords - totalCorrect, accurancy);
 			return result;
-		} else if (step == Status.END_PART) {
+		} else if (step == 5) {
 			int reciteCorrect = lexiconSheet.getCorrectNum();
 			int reciteWords = lexiconSheet.getReciteNum();
 			double accurancy = Caculator.calCorrectness(reciteWords,
 					reciteCorrect);
-		    result = new Result(lexiconSheet.getLexiconName(),lexiconSheet.getTotalNum(),
-					reciteWords, reciteCorrect, reciteWords - reciteCorrect,
-					accurancy);
+			result = new ResultStub(lexiconSheet.getLexiconName(),
+					lexiconSheet.getTotalNum(), reciteWords, reciteCorrect,
+					reciteWords - reciteCorrect, accurancy);
 			return result;
+		} else {
+			return null;
 		}
-		return null;
 	}
-	
-	
-	   /**
-	 * @method  getStartList
-	 * @param prefix The prefix of the string
+
+	/**
+	 * @method getStartList
+	 * @param prefix
+	 *            The prefix of the string
 	 * @return The list of string that have such prefix in the lexicon
 	 */
-	public List<String> getStartList(String prefix){
-		   return lexiconSheet.startList(prefix);
-	   }
-	   
-	   /**
-	 * @method  getLexiconList
-	 * @return 
+	public List<String> getStartList(String prefix) {
+		return lexiconSheet.startList(prefix);
+	}
+
+	/**
+	 * @method getLexiconList
+	 * @return
 	 */
-	public List<String> getLexiconList(){
-		   return lexiconSheet.getLexiconList();
+	public List<String> getLexiconList() {
+		return lexiconSheet.getLexiconList();
 	}
 
-
-	public boolean setStartPos(int type, String text) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	public void changeView(Status step) {
+	public void changeView(int step) {
 		mainFrame.changeView(step);
 	}
 
@@ -132,14 +121,31 @@ public class Controller {
 
 	public void setStartPosition(int type, String word) {
 		if (type == 1 || type == 2) {
-			lexiconSheet.setStartPos(type);
+			lexiconSheet.setStartPosition(type);
 		} else if (type == 0 && word != null && !word.equals("")) {
-			lexiconSheet.setStartPos(word);
+			lexiconSheet.setStartPosition(word);
 		}
 	}
 
 	public boolean setReciteNum(int reciteNum) {
 		return lexiconSheet.setReciteNum(reciteNum);
 	}
+	
+	/**
+	 * @method getFrame
+	 * @return
+	 * @description this function is only used for test to get the mainframe
+	 */
+	public FrameStub getFrame(){
+		return mainFrame;
+	}
 
+	/**
+	 * @method getLexionSheet
+	 * @return
+	 * @description this function is only used for test to get the lexiconsheet
+	 */
+	public LexiconSheetStub getLexionSheet(){
+		return lexiconSheet;
+	}
 }

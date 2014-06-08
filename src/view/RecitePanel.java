@@ -32,8 +32,7 @@ public class RecitePanel extends VBox {
 		Button btn = new Button("Go on!");
 		this.getChildren().add(toolBar);
 		
-		String nextWord = "°µÉ«µ÷";
-		//String nextWord = controller.showNextWord();
+		String nextWord = controller.showNextWord();
 		
 		if (nextWord != null)
 			label.setText(nextWord);

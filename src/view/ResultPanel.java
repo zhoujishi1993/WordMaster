@@ -7,7 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
@@ -125,16 +124,16 @@ public abstract class ResultPanel extends VBox {
 	private void createChart() {
 		ObservableList<PieChart.Data> pieChartData1 =
                 FXCollections.observableArrayList(
-                new PieChart.Data("ÕýÈ·", result.getCorrect()/result.getTotal()*100),
-                new PieChart.Data("´íÎó", result.getWrong()/result.getTotal()*100));
+                new PieChart.Data("ÕýÈ·", result.getCorrect()/result.getRecited()*100),
+                new PieChart.Data("´íÎó", result.getWrong()/result.getRecited()*100));
 
         chart1 = new PieChart(pieChartData1);
         chart1.setTitle("Accuracy");
         
         ObservableList<PieChart.Data> pieChartData2 =
                 FXCollections.observableArrayList(
-                new PieChart.Data("±³ËÐ", result.getTotal()/result.getTotalNum()*100),
-                new PieChart.Data("Î´±³ËÐ", (1-result.getTotal()/result.getTotalNum())*100));
+                new PieChart.Data("±³ËÐ", result.getRecited()/result.getTotalNum()*100),
+                new PieChart.Data("Î´±³ËÐ", (1-result.getRecited()/result.getTotalNum())*100));
 
         chart2 = new PieChart(pieChartData2);
         chart2.setTitle("Has Recited");

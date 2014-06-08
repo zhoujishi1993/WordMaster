@@ -16,8 +16,7 @@ public class TotalResultPanel extends ResultPanel {
 	
 	@Override
 	protected void loadResult() {
-		//setResult(controller.getResult(Status.END_TOTAL));
-		setResult(new Result("ads",1,1,1,1,1));
+		setResult(controller.getResult(Status.END_TOTAL));
 	}
 	
 	@Override

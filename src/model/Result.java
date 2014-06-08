@@ -12,12 +12,14 @@ import javafx.beans.property.SimpleStringProperty;
 
 public final class Result {
 	
+
 	private SimpleStringProperty name;
 	private SimpleIntegerProperty totalNum;
 	private SimpleIntegerProperty total;
 	private SimpleIntegerProperty correct;
 	private SimpleIntegerProperty wrong;
 	private SimpleDoubleProperty accuracy;
+
 	
 	/**
 	 * constructor
@@ -32,6 +34,7 @@ public final class Result {
 	 * @param accuracy
 	 * 			accuracy
 	 */
+
 	public Result(String name, int totalNum, int total, int correct, int wrong,
 			double accuracy) {
 		super();
@@ -41,6 +44,7 @@ public final class Result {
 		this.correct = new SimpleIntegerProperty(correct);
 		this.wrong = new SimpleIntegerProperty(wrong);
 		this.accuracy = new SimpleDoubleProperty(accuracy);
+
 	}
 	
 	/**
@@ -60,12 +64,13 @@ public final class Result {
 	}
 	
 	/**
-	 * get total
-	 * @return total number
+	 * getRecited
+	 * @return recited
 	 */
-	public int getTotal() {
+	public int getRecited() {
 		return total.get();
 	}
+	
 	
 	/**
 	 * get correct
@@ -74,7 +79,6 @@ public final class Result {
 	public int getCorrect() {
 		return correct.get();
 	}
-	
 	
 	/**
 	 * get wrong
@@ -91,12 +95,14 @@ public final class Result {
 	public double getAccurancy() {
 		return accuracy.get();
 	}
-	
+
 	@Override
 	public String toString() {
-		return "result [name=" + name + ", total=" + total + ", correct="
-				+ correct + ", wrong=" + wrong + ", accurancy=" + accuracy
-				+ "]";
+		return "result [name=" + name + ", total=" + totalNum + ", recited="
+				+ total + ", correct=" + correct + ", wrong=" + wrong
+				+ ", accuracy=" + accuracy	+ "]";
+
 	}
+	
 
 }
