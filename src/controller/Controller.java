@@ -1,6 +1,9 @@
 package controller;
+import java.util.ArrayList;
 import java.util.List;
 
+import view.Frame;
+import view.Frame.Status;
 import model.*;
 /**
  * @type Controller.java
@@ -17,14 +20,13 @@ public class Controller {
    
    public static void main(String args[]){
 	   //Shall get the lexicon
-	   Controller con = new Controller();
+	   //Controller con = new Controller();
    }
    
-   public Controller(){
-	   mainFrame = new Frame();
+   public Controller(Frame mainFrame){
+	   this.mainFrame = mainFrame;
 	   user = new User("default");
-	   lexiconSheet = new LexiconSheet(user.getName());
-	   
+	   lexiconSheet = new LexiconSheet();
    }
    
    /**
@@ -51,17 +53,18 @@ public String showNextWord(){
  * recite
  * @return the accurancy, correct words, wrong words, total words of the result. 
  */
-public Result getResult(int step){
-	   if(step == Frame.START){
+public Result getResult(Status step){
+	   if(step == Status.END_TOTAL){
 		   int totalCorrect = lexiconSheet.getTotalCorrect();
 		   int totalWords = lexiconSheet.getTotalNum();
 		   double accurancy = Caculator.calCorrectness(totalWords, totalCorrect);
 		   Result result = new Result("本词库的统计情况",	totalWords,totalCorrect,totalWords - totalCorrect,accurancy);
-	   }else if (step == Frame.END){
+	   }else if (step == Status.END_PART){
 		   int reciteCorrect = lexiconSheet.getCorrectNum();
 		   int reciteWords = lexiconSheet.getReciteNum();
 		   double accurancy = Caculator.calCorrectness(reciteWords, reciteCorrect);
 	   }
+	return result;
    }
    
    /**
@@ -78,14 +81,42 @@ public List<String> getStartList(String prefix){
  * @return 
  */
 public List<String> getLexiconList(){
-	   return lexiconSheet.getLexiconList();
+	   List<String> a = new ArrayList<String>();
+	   a.add("a");
+	   a.add("b");
+	   return a;
+	   //return lexiconSheet.getLexiconList();
    }
    
-   public void changeView(int step, int type){
-	   
+   public void changeView(Status status){
+	   mainFrame.changeView(status);
    }
    
    public void setLexicon(String lexicon){
 	   lexiconSheet.lexiconSelect(lexicon);
    }
+
+   /*返回所选词库第一个单词*/
+   public String getFirstWord() {
+	   // TODO Auto-generated method stub
+	   return null;
+   }
+
+   /*返回所选词库上一次背到的单词*/
+   public String getLastWord() {
+	   // TODO Auto-generated method stub
+	   return null;
+   }
+
+   /*设置起始背诵单词，返回true，如果不合法（即不存在），则默认为第一个，返回false*/
+   public boolean setStartWord(String text) {
+	   // TODO Auto-generated method stub
+	   return false;
+   }
+
+   /*设置背诵数量，返回true，如果不合法（即超过所剩单词），则默认为剩下的数量，返回false*/
+    public boolean setCount(int count) {
+	    // TODO Auto-generated method stub
+	    return false;
+    }
 }

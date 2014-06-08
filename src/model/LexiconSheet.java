@@ -116,6 +116,16 @@ public class LexiconSheet {
 	public int getTotalCorrect() {
 		return myLexicon.getTotalCorrect();
 	}
+
+	public List<String> getLexiconList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getNextChinese() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	
