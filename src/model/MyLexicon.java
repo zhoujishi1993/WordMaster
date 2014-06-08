@@ -19,6 +19,9 @@ public class MyLexicon extends Lexicon {
 	
 	public MyLexicon(List<Word> words, String name) {
 		super(words, name);
+		this.correctness = new boolean[words.size()];
+		for(int i=0; i<this.correctness.length; i++) 
+			this.correctness[i] = false;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -29,12 +32,14 @@ public class MyLexicon extends Lexicon {
 	 */
 	public List<String> startList(String prefix) {
 		List<String> ret = new ArrayList<String>();
-		String regex = "^"+prefix;
+		if(prefix==null)
+			return ret;
+		String regex = prefix;
 		Iterator<Word> it = this.words.iterator();
 		String temp;
 		while(it.hasNext()) {
 			temp = it.next().getEnglish();
-			if(temp.matches(regex)) {
+			if(temp.startsWith(regex)) {
 				ret.add(temp);
 			}
 		}
@@ -47,17 +52,20 @@ public class MyLexicon extends Lexicon {
 	 * @return true or false
 	 */
 	public boolean judgement(String input) {
-		boolean ret = this.words.get(this.recitePos).getEnglish().equals(input);
-		this.words.get(this.recitePos).setRight(ret);
+		int prev = this.recitePos-1;
+		boolean ret = this.words.get(prev).getEnglish().equals(input);
+		this.words.get(prev).setRight(ret);
+		this.correctness[prev] = ret;
 		return ret;
 	}
 	
 	/**
 	 * isOutOfBound
 	 * @return true or false
+	 * 			true out of bound
 	 */
-	private boolean isOutOfBound() {
-		return this.startPos+this.reciteNum <= this.words.size();
+	private boolean isOutOfBound(int reciteNum) {
+		return this.startPos+reciteNum > this.words.size();
 	}
 	
 	/**
@@ -68,7 +76,7 @@ public class MyLexicon extends Lexicon {
 	 * 			false reciteNum = words.size()-this.startPos
 	 */
 	public boolean setReciteNum(int reciteNum) {
-		if(isOutOfBound()) {
+		if(!isOutOfBound(reciteNum)) {
 			this.reciteNum = reciteNum;
 			return true;
 		} else {
@@ -99,6 +107,20 @@ public class MyLexicon extends Lexicon {
 	}
 	
 	/**
+	 * getTotalRecitedNum
+	 * @return
+	 */
+	public int getTotalRecitedNum() {
+		Iterator<Word> it = this.words.iterator();
+		int cal = 0;
+		while(it.hasNext()) {
+			if(it.next().isRecited())
+				cal++;
+		}
+		return cal;
+	}
+	
+	/**
 	 * getRecitedNum
 	 * @return recited number
 	 */
@@ -110,10 +132,8 @@ public class MyLexicon extends Lexicon {
 	 * setStartPos
 	 * @param type
 	 * 			2 last recited
-	 * @return true or
-	 * 			false no last recited word
 	 */
-	public boolean setStartPos(int type) {
+	public void setStartPos(int type) {
 		boolean ret = false;
 		switch(type) {
 		case 1:
@@ -126,7 +146,7 @@ public class MyLexicon extends Lexicon {
 			Iterator<Word> it = this.words.iterator();
 			int cal = 0;
 			while(it.hasNext()) {
-				cal++;
+				
 				if(it.next().isStart() && cal!=this.words.size()) {
 					this.startPos = cal;
 					//Notice!!
@@ -134,29 +154,36 @@ public class MyLexicon extends Lexicon {
 					ret = true;
 					break;
 				}
+				cal++;
+			}
+			if(!ret) {
+				this.startPos = 0;
+				//Notice!!
+				this.recitePos = 0;
+				ret = true;
 			}
 			break;
 		}
-		return ret;
+		//return ret;
 	}
 	
 	/**
 	 * setStartPos
-	 * @param word input English
-	 * @return true or
-	 * 			false: no such word
+	 * @param word input English\
 	 */
-	public boolean setStartPos(String word) {
+	public void setStartPos(String word) {
 		boolean ret = false;
 		int cal = 0;
 		Iterator<Word> it = this.words.iterator();
 		while(it.hasNext()) {
 			if(it.next().getEnglish().equals(word)) {
 				this.startPos = cal;
+				this.recitePos = cal;
 				ret = true;
 			}
+			cal++;
 		}
-		return ret;
+		//return ret;
 	}
 	
 	/**
@@ -172,13 +199,17 @@ public class MyLexicon extends Lexicon {
 		}
 		return cal;
 	}
+	
 	/**
 	 * getNext
+	 * @return next english
 	 */
-	public Word getNext() {
-		Word ret = this.words.get(this.recitePos);
+	public String getNext() {
+		if(this.recitePos>=this.startPos+this.reciteNum)
+			return null;
+		Word ret = this.words.get(this.recitePos++);
 		ret.setRecited(true);
-		if((this.recitePos++)==(this.startPos+this.reciteNum)) {
+		/*if((this.recitePos++)==(this.startPos+this.reciteNum)) {
 			Iterator<Word> it = this.words.iterator();
 			Word temp;
 			while(it.hasNext()) {
@@ -189,7 +220,26 @@ public class MyLexicon extends Lexicon {
 				}
 			}
 			ret.setStart(true);
+		}*/
+		return ret.getEnglish();
+	}
+	
+	/**
+	 * setStartWord
+	 */
+	public void setStartWord() {
+		Iterator<Word> it = this.words.iterator();
+		Word temp;
+		while(it.hasNext()) {
+			temp = it.next();
+			if(temp.isStart()) {
+				temp.setStart(false);
+				break;
+			}
 		}
-		return ret;
+		if(this.recitePos >= words.size())
+			this.words.get(0).setStart(true);
+		else
+			this.words.get(this.recitePos).setStart(true);
 	}
 }

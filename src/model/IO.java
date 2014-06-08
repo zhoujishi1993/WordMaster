@@ -23,20 +23,18 @@ public interface IO {
 	void newUserLexicon(String username);
 	
 	/**
-	 * read in words
-	 * @param username name of user
-	 */
-	List<Word> readInWords(String username);
-	
-	/**
 	 * write lexicon
 	 * @param lexicon target lexicon
 	 * @param username username
 	 */
 	void writeLexicon(MyLexicon lexicon, String username);
 	
-	
-	public List<Word> readInWords(String username, String lexiconName);
-	public List<String> readInLexicon(String username);
+	/**
+	 * readInWords
+	 * @param username name of username
+	 * @param lexicon lexicon
+	 * @return words in the lexicon
+	 */
+	List<Word> readInWords(String username, String lexicon);
 
 }

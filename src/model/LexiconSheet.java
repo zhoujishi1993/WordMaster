@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -46,7 +47,7 @@ public class LexiconSheet {
 	}
 	
 	public String getNextChinese() {
-		return myLexicon.getNext().getChinese();
+		return myLexicon.getNext();
 	}
 	
 	/**
@@ -103,19 +104,17 @@ public class LexiconSheet {
 	/**
 	 * setStartPos
 	 * @param type
-	 * @return
 	 */
-	public boolean setStartPos(int type) {
-		return myLexicon.setStartPos(type);
+	public void setStartPos(int type) {
+		myLexicon.setStartPos(type);
 	}
 	
 	/**
 	 * setStartPos
 	 * @param word
-	 * @return
 	 */
-	public boolean setStartPos(String word) {
-		return myLexicon.setStartPos(word);
+	public void setStartPos(String word) {
+		myLexicon.setStartPos(word);
 	}
 	
 	/**
@@ -126,8 +125,24 @@ public class LexiconSheet {
 		return myLexicon.getTotalCorrect();
 	}
 	
+	/**
+	 * getLexiconName
+	 * @return
+	 */
+	public String getLexiconName() {
+		return this.myLexicon.getName();
+	}
 	
+	/**
+	 * setStartWord
+	 */
+	public void setStartWord() {
+		this.myLexicon.setStartWord();
+	}
 	
-	
+	public int getTotalRecitedNum() {
+		return this.myLexicon.getTotalRecitedNum();
+	}
+
 	
 }

@@ -1,20 +1,25 @@
-package controller;
+package testController;
 
 import java.util.List;
 
-import model.*;
+import javax.net.ssl.SSLEngineResult.Status;
+
+import model.Result;
+import controller.Caculator;
 
 /**
  * @type Controller.java
  * @author zhoujishi
- * @version
- */
+ * @version !import This class is same with the Controller class in controller
+ *          package This class is used for test and the Class name is replaced
+ *          with Stub
+ * */
 public class Controller {
-	private LexiconSheet lexiconSheet;
-	private Frame mainFrame;
-	private User user;
+	private LexiconSheetStub lexiconSheet;
+	private FrameStub mainFrame;
+	private UserStub user;
 	private int step;
-	private Result result;
+	private ResultStub result;
 
 	public static void main(String args[]) {
 		// Shall get the lexicon
@@ -22,10 +27,9 @@ public class Controller {
 	}
 
 	public Controller() {
-		mainFrame = new Frame();
-		user = new User("default");
-		lexiconSheet = new LexiconSheet();
-
+		mainFrame = new FrameStub();
+		user = new UserStub("default");
+		lexiconSheet = new LexiconSheetStub();
 	}
 
 	/**
@@ -48,7 +52,7 @@ public class Controller {
 		String nextWord = lexiconSheet.getNextChinese();
 		if (nextWord != null) {
 			return nextWord;
-		}else{
+		} else {
 			lexiconSheet.setStartWord();
 			mainFrame.changeView(5);
 			return null;
@@ -65,25 +69,27 @@ public class Controller {
 	 * @return the accurancy, correct words, wrong words, total words of the
 	 *         result.
 	 */
-	public Result getResult(int step) {
+	public ResultStub getResult(int step) {
 		if (step == 4) {
 			int totalCorrect = lexiconSheet.getTotalCorrect();
 			int recitedWords = lexiconSheet.getTotalRecitedNum();
 			double accurancy = Caculator.calCorrectness(recitedWords,
 					totalCorrect);
-			result = new Result(lexiconSheet.getLexiconName(),lexiconSheet.getTotalNum(),
-					recitedWords, totalCorrect, recitedWords - totalCorrect,
-					accurancy);
+		    result = new ResultStub(lexiconSheet.getLexiconName(),
+					lexiconSheet.getTotalNum(), recitedWords, totalCorrect,
+					recitedWords - totalCorrect, accurancy);
 			return result;
 		} else if (step == 5) {
 			int reciteCorrect = lexiconSheet.getCorrectNum();
 			int reciteWords = lexiconSheet.getReciteNum();
 			double accurancy = Caculator.calCorrectness(reciteWords,
 					reciteCorrect);
-		    result = new Result(lexiconSheet.getLexiconName(),lexiconSheet.getTotalNum(),
-					reciteWords, reciteCorrect, reciteWords - reciteCorrect,
-					accurancy);
+			result = new ResultStub(lexiconSheet.getLexiconName(),
+					lexiconSheet.getTotalNum(), reciteWords, reciteCorrect,
+					reciteWords - reciteCorrect, accurancy);
 			return result;
+		} else {
+			return null;
 		}
 	}
 
@@ -115,14 +121,31 @@ public class Controller {
 
 	public void setStartPosition(int type, String word) {
 		if (type == 1 || type == 2) {
-			lexiconSheet.setStartPos(type);
+			lexiconSheet.setStartPosition(type);
 		} else if (type == 0 && word != null && !word.equals("")) {
-			lexiconSheet.setStartPos(word);
+			lexiconSheet.setStartPosition(word);
 		}
 	}
 
 	public boolean setReciteNum(int reciteNum) {
-		lexiconSheet.setReciteNum(reciteNum);
+		return lexiconSheet.setReciteNum(reciteNum);
+	}
+	
+	/**
+	 * @method getFrame
+	 * @return
+	 * @description this function is only used for test to get the mainframe
+	 */
+	public FrameStub getFrame(){
+		return mainFrame;
 	}
 
+	/**
+	 * @method getLexionSheet
+	 * @return
+	 * @description this function is only used for test to get the lexiconsheet
+	 */
+	public LexiconSheetStub getLexionSheet(){
+		return lexiconSheet;
+	}
 }

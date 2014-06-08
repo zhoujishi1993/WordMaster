@@ -1,16 +1,14 @@
-/**
- * 
- */
-package controller;
+package testController;
+
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
-
+import controller.*;
 /**
  * @type CaculatorTest.java
  * @author zhoujishi
- * @version
+ * @version 1.0
+ * This is a test class for Calculator
  */
 public class CaculatorTest {
 
@@ -70,3 +68,4 @@ public class CaculatorTest {
 		Caculator.calCorrectness(reciteNum, correct);
 	}
 }
+

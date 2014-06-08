@@ -30,10 +30,15 @@ public class TXTIO implements IO {
 	@Override
 	public List<String> readInLexicon() {
 		// TODO Auto-generated method stub
-		return null;
+		List<String> ret = new ArrayList<String>();
+		for(int i=0; i<26; i++) {
+			char c = (char) (i+'a');
+			ret.add(c+"");
+		}
+		return ret;
 	}
 	
-	public List<String> readInLexicon(String username) {
+	/*public List<String> readInLexicon(String username) {
 		File dir = new File(username);
 		if(!dir.isDirectory())
 			return null;
@@ -44,7 +49,7 @@ public class TXTIO implements IO {
 			ret.add(f.getName());
 		}
 		return ret;
-	}
+	}*/
 
 	@Override
 	public void newUserLexicon(String username) {
@@ -100,13 +105,8 @@ public class TXTIO implements IO {
 			}
 		}
 	}
-
-	@Override
-	public List<Word> readInWords(String username) {
-		return null;
-		// TODO Auto-generated method stub
-	}
 	
+	@Override
 	public List<Word> readInWords(String username, String lexiconName) {
 		// TODO Auto-generated method stub
 		String str[];
@@ -140,6 +140,8 @@ public class TXTIO implements IO {
 	@Override
 	public void writeLexicon(MyLexicon lexicon, String username) {
 		// TODO Auto-generated method stub
+		if(!(new File(username).exists()) || !(new File(username).isDirectory()))
+			return;
 		File file = new File(username+"/"+lexicon.name);
 		if(!file.exists()) {
 			try {
@@ -164,11 +166,17 @@ public class TXTIO implements IO {
 			return;
 		}
 	}
-
-	public static void main(String args[]) {
-		TXTIO textio = new TXTIO();
-		textio.newUserLexicon("default");
-		List<Word> words = new ArrayList<Word>();
-		textio.readInLexicon("default");
+	
+	public static void main(String[] args) {
+		String prefix = "a";
+		List<String> ret = new ArrayList<String>();
+		String regex = prefix;
+		String[] str = new String[]{"ab", "abed", "c", "aefdf"};
+		for(String s: str) {
+			if(s.startsWith(regex))
+				ret.add(s);
+		}
+		System.out.println(ret);
 	}
+ 
 }

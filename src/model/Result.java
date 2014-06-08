@@ -10,6 +10,7 @@ public class Result {
 	
 	private String name;
 	private int total;
+	private int recited;
 	private int correct;
 	private int wrong;
 	private double accurancy;
@@ -27,11 +28,12 @@ public class Result {
 	 * @param accurancy
 	 * 			accurancy
 	 */
-	public Result(String name, int total, int correct, int wrong,
+	public Result(String name, int total, int recited, int correct, int wrong,
 			double accurancy) {
 		super();
 		this.name = name;
 		this.total = total;
+		this.recited = recited;
 		this.correct = correct;
 		this.wrong = wrong;
 		this.accurancy = accurancy;
@@ -54,13 +56,20 @@ public class Result {
 	}
 	
 	/**
+	 * getRecited
+	 * @return recited
+	 */
+	public int getRecited() {
+		return recited;
+	}
+	
+	/**
 	 * get correct
 	 * @return correct number
 	 */
 	public int getCorrect() {
 		return correct;
 	}
-	
 	
 	/**
 	 * get wrong
@@ -77,12 +86,13 @@ public class Result {
 	public double getAccurancy() {
 		return accurancy;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "result [name=" + name + ", total=" + total + ", correct="
-				+ correct + ", wrong=" + wrong + ", accurancy=" + accurancy
-				+ "]";
+		return "Result [name=" + name + ", total=" + total + ", recited="
+				+ recited + ", correct=" + correct + ", wrong=" + wrong
+				+ ", accurancy=" + accurancy + "]";
 	}
+	
 
 }
