@@ -9,10 +9,11 @@ import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -25,12 +26,13 @@ public class CSPanel extends VBox {
 	private GridPane gridPane;
 	private TextField word;
 	private TextField count;
+	private int type;
 	public CSPanel(Controller controller) {
 		this.controller = controller;
 		init();
 	}
 	
-	public void init() {
+	private void init() {
 		createToolBar();
 		createListView();
 		createGridPane();
@@ -53,10 +55,10 @@ public class CSPanel extends VBox {
 		ok.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		    	if (isNumeric(count.getText())) {
-		    		if (!controller.setStartWord(word.getText())) {
+		    		if (!controller.setStartPos(type, word.getText())) {
 		    			JOptionPane.showMessageDialog(null,"输入单词有误，默认从第一个开始");
 		    		}
-		    		if (!controller.setCount(Integer.parseInt(count.getText()))) {
+		    		if (!controller.setReciteNum(Integer.parseInt(count.getText()))) {
 		    			JOptionPane.showMessageDialog(null,"输入数量超过剩余单词数量，默认背到最后一个为止");
 		    		}
 		    		
@@ -87,15 +89,21 @@ public class CSPanel extends VBox {
 	
 	private void createGridPane() {
 		gridPane = new GridPane();
-		GridPane.setColumnSpan(listView, 5);
 		gridPane.add(listView, 0, 0);
-		word = new TextField(controller.getFirstWord());
+		word = new TextField();
 		word.setEditable(false);
 		count = new TextField();
 		Label countLabel = new Label("输入要背的单词数");
-		gridPane.add(countLabel, 1, 0);
-		gridPane.add(count, 1, 1);
-		gridPane.add(word, 1, 2);
+		Label modeLabel = new Label("选择背诵模式");
+		VBox vbox = new VBox();
+		vbox.getChildren().add(countLabel);
+		vbox.getChildren().add(count);
+		vbox.getChildren().add(modeLabel);
+		
+		
+		
+		//gridPane.add(count, 1, 1);
+		//gridPane.add(word, 1, 2);
 		
 		final ToggleGroup group = new ToggleGroup();
 
@@ -106,25 +114,25 @@ public class CSPanel extends VBox {
 
 		RadioButton rb2 = new RadioButton("从上一次背到的单词开始");
 		rb2.setToggleGroup(group);
-		rb1.setUserData("rb2");
+		rb2.setUserData("rb2");
 		 
 		RadioButton rb3 = new RadioButton("自选");
 		rb3.setToggleGroup(group);
-		rb1.setUserData("rb3");
+		rb3.setUserData("rb3");
 		
 		group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
 		    public void changed(ObservableValue<? extends Toggle> ov,
 		        Toggle old_toggle, Toggle new_toggle) {
 		            if (group.getSelectedToggle() != null) {
-		                if (group.getSelectedToggle().getUserData().equals("rb1")) {
-		                	word.setText(controller.getFirstWord());
+		                if (new_toggle.getUserData().toString().equals("rb1")) {
 		                	word.setEditable(false);
-		                } else if (group.getSelectedToggle().getUserData().equals("rb2")) {
-		                	word.setText(controller.getLastWord());
+		                	type = 1;
+		                } else if (new_toggle.getUserData().toString().equals("rb2")) {
 		                	word.setEditable(false);
-		                } else if (group.getSelectedToggle().getUserData().equals("rb2")) {
-		                	word.setText("");
+		                	type = 2;
+		                } else if (new_toggle.getUserData().toString().equals("rb3")) {
 		                	word.setEditable(true);
+		                	type = 3;
 		                }
 		            }                
 		        }
@@ -135,10 +143,13 @@ public class CSPanel extends VBox {
 		    	listView.setItems(FXCollections.observableArrayList(controller.getStartList(word.getText())));
 		    }
 		});
-		
-		gridPane.add(rb1, 1, 3);
-		gridPane.add(rb2, 1, 3);
-		gridPane.add(rb3, 1, 3);
+		vbox.getChildren().add(rb1);
+		vbox.getChildren().add(rb2);
+		vbox.getChildren().add(rb3);
+		vbox.getChildren().add(word);
+	//	gridPane.add(rb1, 1, 3);
+	//	gridPane.add(rb2, 1, 3);
+	//	gridPane.add(rb3, 1, 3);
 		Button resultButton = new Button("查看背诵统计信息");
 		
 		resultButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -146,13 +157,19 @@ public class CSPanel extends VBox {
 		    	controller.changeView(Status.END_TOTAL);
 		    }
 		});
-		gridPane.add(resultButton, 1, 4);
+		vbox.getChildren().add(resultButton);
+		
+		Insets insets = new Insets(10,10,10,10);
+		for (Node c : vbox.getChildren()) {
+			VBox.setMargin(c, insets);
+		}
+		gridPane.add(vbox, 1, 0);
 		
 
 	}
 	
 	private static boolean isNumeric(String str){ 
-	    Pattern pattern = Pattern.compile("[0-9]*"); 
+	    Pattern pattern = Pattern.compile("[0-9]+"); 
 	    return pattern.matcher(str).matches();    
 	} 
 }

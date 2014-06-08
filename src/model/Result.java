@@ -1,18 +1,23 @@
 package model;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /**
  * Result
  * @author fxiangyi@gmail.com
  * @version 2.0
  */
 
-public class Result {
+public final class Result {
 	
-	private String name;
-	private int total;
-	private int correct;
-	private int wrong;
-	private double accurancy;
+	private SimpleStringProperty name;
+	private SimpleIntegerProperty totalNum;
+	private SimpleIntegerProperty total;
+	private SimpleIntegerProperty correct;
+	private SimpleIntegerProperty wrong;
+	private SimpleDoubleProperty accuracy;
 	
 	/**
 	 * constructor
@@ -24,17 +29,18 @@ public class Result {
 	 * 			correct number
 	 * @param wrong
 	 * 			false number
-	 * @param accurancy
-	 * 			accurancy
+	 * @param accuracy
+	 * 			accuracy
 	 */
-	public Result(String name, int total, int correct, int wrong,
-			double accurancy) {
+	public Result(String name, int totalNum, int total, int correct, int wrong,
+			double accuracy) {
 		super();
-		this.name = name;
-		this.total = total;
-		this.correct = correct;
-		this.wrong = wrong;
-		this.accurancy = accurancy;
+		this.name = new SimpleStringProperty(name);
+		this.totalNum = new SimpleIntegerProperty(totalNum);
+		this.total = new SimpleIntegerProperty(total);
+		this.correct = new SimpleIntegerProperty(correct);
+		this.wrong = new SimpleIntegerProperty(wrong);
+		this.accuracy = new SimpleDoubleProperty(accuracy);
 	}
 	
 	/**
@@ -42,7 +48,15 @@ public class Result {
 	 * @return name
 	 */
 	public String getName() {
-		return name;
+		return name.get();
+	}
+	
+	/**
+	 * get totalNum
+	 * @return lexicon total number
+	 */
+	public int getTotalNum() {
+		return totalNum.get();
 	}
 	
 	/**
@@ -50,7 +64,7 @@ public class Result {
 	 * @return total number
 	 */
 	public int getTotal() {
-		return total;
+		return total.get();
 	}
 	
 	/**
@@ -58,7 +72,7 @@ public class Result {
 	 * @return correct number
 	 */
 	public int getCorrect() {
-		return correct;
+		return correct.get();
 	}
 	
 	
@@ -67,21 +81,21 @@ public class Result {
 	 * @return wrong number
 	 */
 	public int getWrong() {
-		return wrong;
+		return wrong.get();
 	}
 	
 	/**
-	 * get accurancy
-	 * @return accurancy
+	 * get accuracy
+	 * @return accuracy
 	 */
 	public double getAccurancy() {
-		return accurancy;
+		return accuracy.get();
 	}
 	
 	@Override
 	public String toString() {
 		return "result [name=" + name + ", total=" + total + ", correct="
-				+ correct + ", wrong=" + wrong + ", accurancy=" + accurancy
+				+ correct + ", wrong=" + wrong + ", accurancy=" + accuracy
 				+ "]";
 	}
 

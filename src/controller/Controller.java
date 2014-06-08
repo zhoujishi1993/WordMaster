@@ -1,21 +1,23 @@
 package controller;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import view.Frame;
 import view.Frame.Status;
 import model.*;
+
 /**
  * @type Controller.java
  * @author zhoujishi
  * @version
  */
 public class Controller {
-   private LexiconSheet lexiconSheet;
-   private Frame mainFrame;
-   private User user;
-   private int step;
-   private Result result;
+	private LexiconSheet lexiconSheet;
+	private Frame mainFrame;
+	private User user;
+	private int step;
+	private Result result;
 
    
    public static void main(String args[]){
@@ -96,27 +98,16 @@ public List<String> getLexiconList(){
 	   lexiconSheet.lexiconSelect(lexicon);
    }
 
-   /*返回所选词库第一个单词*/
-   public String getFirstWord() {
-	   // TODO Auto-generated method stub
-	   return null;
-   }
 
-   /*返回所选词库上一次背到的单词*/
-   public String getLastWord() {
-	   // TODO Auto-generated method stub
-	   return null;
-   }
 
-   /*设置起始背诵单词，返回true，如果不合法（即不存在），则默认为第一个，返回false*/
-   public boolean setStartWord(String text) {
-	   // TODO Auto-generated method stub
-	   return false;
-   }
+	public boolean setStartPos(int type, String text) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-   /*设置背诵数量，返回true，如果不合法（即超过所剩单词），则默认为剩下的数量，返回false*/
-    public boolean setCount(int count) {
-	    // TODO Auto-generated method stub
-	    return false;
-    }
+	public boolean setReciteNum(int parseInt) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

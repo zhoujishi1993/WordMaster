@@ -15,7 +15,6 @@ public class Frame extends Application{
 
 	private Stage stage;
 	private Controller controller;
-	private Status status;
     public enum Status {
         INIT (0), SELECT (1), START (2), RECITE (3), END_TOTAL (4), END_PART (5);
   
@@ -44,7 +43,7 @@ public class Frame extends Application{
     public void start(Stage primaryStage) {
         primaryStage.setTitle("WordMaster");
         stage = primaryStage;
-        changeView(Status.SELECT);
+        changeView(Status.INIT);
        // scene.getStylesheets().add("view.css");
         primaryStage.show();
     }
@@ -54,7 +53,7 @@ public class Frame extends Application{
     	Scene scene;
     	switch (status) {
     	case INIT:
-    		//root = new WelcomePanel(controller);
+    		root = new WelcomePanel(controller);
     		break;
     	case SELECT:
     		root = new CLPanel(controller);
@@ -63,18 +62,18 @@ public class Frame extends Application{
     		root = new CSPanel(controller);
     		break;
     	case RECITE:
-  //  		root = new RecitePanel(controller);
+    		root = new RecitePanel(controller);
     		break;
     	case END_TOTAL:
-   // 		root = new ResultPanelTotal(controller);
+    		root = new TotalResultPanel(controller);
     		break;
     	case END_PART:
-  //  		root = new ResultPanelPart(controller);
+    		root = new PartResultPanel(controller);
     		break;
     	default:
     	}
         scene = new Scene(root, 500, 450);
 		stage.setScene(scene);
-		this.status = status;
+		stage.setResizable(false);
     }
 }

@@ -19,7 +19,7 @@ public class CLPanel extends VBox {
 		init();
 	}
 	
-	public void init() {
+	private void init() {
 		createToolBar();
 		createListView();
 		this.getChildren().add(toolBar);

@@ -40,6 +40,15 @@ public class LexiconSheet {
 		LexiconList = IO.readInLexicon();
 	}
 	
+	
+	public List<String> getLexiconList() {
+		return IO.readInLexicon();
+	}
+	
+	public String getNextChinese() {
+		return myLexicon.getNext().getChinese();
+	}
+	
 	/**
 	 * startList
 	 * @param prefix
