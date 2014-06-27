@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Iterator;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +9,7 @@ import java.util.List;
  * @version 2.0
  */
 
-public class Lexicon {
+public class Lexicon implements Serializable {
 	
 	protected List<Word> words;
 	protected String name;
@@ -37,8 +37,12 @@ public class Lexicon {
 	
 	@Override
 	public String toString() {
-		return "lexicon [words=" + words + ", name=" + name + "]";
+		String str = "";
+		str += "<?xml version='1.0' encoding='UTF-8'?><words>";
+		for(Word w: this.words) 
+			str += w;
+		str += "</words>";
+		return str;
 	}
 	
-
 }

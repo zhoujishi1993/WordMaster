@@ -25,7 +25,8 @@ public class LexiconSheet {
 	 */
 	
 	public LexiconSheet() {
-		IO = new TXTIO();
+		//IO = new TXTIO();
+		IO = new XMLIO();
 	}
 	
 	public LexiconSheet(MyLexicon myLexicon, List<String> lexiconList,
