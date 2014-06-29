@@ -65,8 +65,6 @@ public class TXTIO implements IO {
 		dir.mkdir();
 		
 		
-		File target = new File(username+"/"+"a");
-		
 		BufferedReader reader = null;
 		BufferedWriter writer = null;
 		String line = null;

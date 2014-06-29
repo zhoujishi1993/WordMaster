@@ -25,7 +25,9 @@ public class LexiconSheet {
 	 */
 	
 	public LexiconSheet() {
-		IO = new TXTIO();
+
+		//IO = new TXTIO();
+		IO = new XMLIO();
 		username = "default";
 	}
 	

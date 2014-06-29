@@ -1,12 +1,14 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Word
  * @author fxiangyi@gmail.com
  * @version 2.0
  */
 
-public class Word {
+public class Word implements Serializable {
 	
 	private String english;
 	private String chinese;
@@ -107,9 +109,7 @@ public class Word {
 	
 	@Override
 	public String toString() {
-		return this.english+" "+this.chinese+" "+this.recited+" "+this.right+" "+this.start;
+		//return this.english+" "+this.chinese+" "+this.recited+" "+this.right+" "+this.start;
+		return "<word><english>"+this.english+"</english><chinese>"+this.chinese+"</chinese><recited>"+this.recited+"</recited><right>"+this.right+"</right><start>"+this.start+"</start></word>";
 	}
-	
-	
-
 }

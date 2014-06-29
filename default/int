@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='gbk'?>
+<words>
+<word><english>alas</english><chinese>int.唉，哎呀</chinese><recited>false</recited><right>false</right><start>false</start></word>
+<word><english>farewell</english><chinese>int.再见</chinese><recited>false</recited><right>false</right><start>false</start></word>
+<word><english>good-bye</english><chinese>int.再见</chinese><recited>false</recited><right>false</right><start>false</start></word>
+<word><english>hello</english><chinese>int.喂，你好</chinese><recited>false</recited><right>false</right><start>false</start></word>
+<word><english>hey</english><chinese>int.嗨</chinese><recited>false</recited><right>false</right><start>false</start></word>
+<word><english>hi</english><chinese>int.嗨，你好</chinese><recited>false</recited><right>false</right><start>false</start></word>
+<word><english>hurrah</english><chinese>int.好哇</chinese><recited>false</recited><right>false</right><start>false</start></word>
+<word><english>hush</english><chinese>int.嘘</chinese><recited>false</recited><right>false</right><start>false</start></word>
+<word><english>oh</english><chinese>int.哦，嗬</chinese><recited>false</recited><right>false</right><start>false</start></word>
+</words>
