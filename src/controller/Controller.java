@@ -18,18 +18,6 @@ public class Controller {
 	private int step;
 	private Result result;
 
-
-	public static void main(String args[]) {
-		// Shall get the lexicon
-		//Controller con = new Controller();
-	}
-
-/*	public Controller() {
-		mainFrame = new Frame();
-		user = new User("default");
-		lexiconSheet = new LexiconSheet();
-
-	}*/
 	
 	public Controller(Frame mainFrame){
 		   this.mainFrame = mainFrame;
@@ -116,11 +104,6 @@ public class Controller {
 	}
 
 
-	public boolean setStartPos(int type, String text) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 
 	public void changeView(Status step) {
 		mainFrame.changeView(step);
@@ -130,12 +113,13 @@ public class Controller {
 		lexiconSheet.lexiconSelect(lexicon);
 	}
 
-	public void setStartPosition(int type, String word) {
+	public boolean setStartPosition(int type, String word) {
 		if (type == 1 || type == 2) {
-			lexiconSheet.setStartPos(type);
-		} else if (type == 0 && word != null && !word.equals("")) {
-			lexiconSheet.setStartPos(word);
+			return lexiconSheet.setStartPos(type);
+		} else if (type == 3 && word != null && !word.equals("")) {
+			return lexiconSheet.setStartPos(word);
 		}
+		return false;
 	}
 
 	public boolean setReciteNum(int reciteNum) {

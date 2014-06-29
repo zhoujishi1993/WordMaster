@@ -44,7 +44,6 @@ public class Frame extends Application{
         primaryStage.setTitle("WordMaster");
         stage = primaryStage;
         changeView(Status.INIT);
-       // scene.getStylesheets().add("view.css");
         primaryStage.show();
     }
     

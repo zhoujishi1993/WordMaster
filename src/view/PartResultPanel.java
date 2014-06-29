@@ -5,17 +5,15 @@ import controller.Controller;
 
 
 public class PartResultPanel extends ResultPanel {
-	private Controller controller;
-
 	
 	public PartResultPanel(Controller controller) {
 		super(controller);
-		this.controller = controller;
 	}
 	
 	@Override
 	protected void loadResult() {
-		setResult(controller.getResult(Status.END_PART));
+		//System.out.println("loadResult: "+getController().getResult(Status.END_PART));
+		setResult(getController().getResult(Status.END_PART));
 	}
 	
 	@Override

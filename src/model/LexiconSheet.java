@@ -26,6 +26,7 @@ public class LexiconSheet {
 	
 	public LexiconSheet() {
 		IO = new TXTIO();
+		username = "default";
 	}
 	
 	public LexiconSheet(MyLexicon myLexicon, List<String> lexiconList,
@@ -101,21 +102,28 @@ public class LexiconSheet {
 		return myLexicon.getTotalNum();
 	}
 	
+
 	/**
 	 * setStartPos
 	 * @param type
+	 * @return 
 	 */
-	public void setStartPos(int type) {
-		myLexicon.setStartPos(type);
+	public boolean setStartPos(int type) {
+		return myLexicon.setStartPos(type);
+		
 	}
 	
 	/**
 	 * setStartPos
 	 * @param word
+	 * @return 
 	 */
-	public void setStartPos(String word) {
-		myLexicon.setStartPos(word);
+	public boolean setStartPos(String word) {
+		return myLexicon.setStartPos(word);
+		 
 	}
+
+
 	
 	/**
 	 * getTotalCorrect
@@ -140,6 +148,7 @@ public class LexiconSheet {
 	 */
 	public void setStartWord() {
 		this.myLexicon.setStartWord();
+		IO.writeLexicon(myLexicon, username);
 	}
 	
 	public int getTotalRecitedNum() {

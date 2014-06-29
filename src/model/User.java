@@ -9,7 +9,7 @@ package model;
 public class User {
 	
 	private String name;
-
+	private IO io;
 	/**
 	 * constructor
 	 * @param name name of user
@@ -17,6 +17,8 @@ public class User {
 	public User(String name) {
 		super();
 		this.name = name;
+		io = new TXTIO();
+		io.newUserLexicon(name);
 	}
 	
 	/**

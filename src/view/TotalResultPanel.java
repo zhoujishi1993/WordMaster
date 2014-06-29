@@ -6,17 +6,14 @@ import controller.Controller;
 
 
 public class TotalResultPanel extends ResultPanel {
-	private Controller controller;
 
-	
 	public TotalResultPanel(Controller controller) {
 		super(controller);
-		this.controller = controller;
 	}
 	
 	@Override
 	protected void loadResult() {
-		setResult(controller.getResult(Status.END_TOTAL));
+		setResult(getController().getResult(Status.END_TOTAL));
 	}
 	
 	@Override

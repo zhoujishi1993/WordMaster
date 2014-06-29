@@ -128,12 +128,8 @@ public class MyLexicon extends Lexicon {
 		return this.reciteNum;
 	}
 	
-	/**
-	 * setStartPos
-	 * @param type
-	 * 			2 last recited
-	 */
-	public void setStartPos(int type) {
+	
+	public boolean setStartPos(int type) {
 		boolean ret = false;
 		switch(type) {
 		case 1:
@@ -164,14 +160,14 @@ public class MyLexicon extends Lexicon {
 			}
 			break;
 		}
-		//return ret;
+		return true;
 	}
 	
 	/**
 	 * setStartPos
 	 * @param word input English\
 	 */
-	public void setStartPos(String word) {
+	public boolean setStartPos(String word) {
 		boolean ret = false;
 		int cal = 0;
 		Iterator<Word> it = this.words.iterator();
@@ -180,10 +176,11 @@ public class MyLexicon extends Lexicon {
 				this.startPos = cal;
 				this.recitePos = cal;
 				ret = true;
+				break;
 			}
 			cal++;
 		}
-		//return ret;
+		return ret;
 	}
 	
 	/**
@@ -221,7 +218,7 @@ public class MyLexicon extends Lexicon {
 			}
 			ret.setStart(true);
 		}*/
-		return ret.getEnglish();
+		return ret.getChinese();
 	}
 	
 	/**

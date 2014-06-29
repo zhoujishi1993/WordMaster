@@ -74,6 +74,7 @@ public class RecitePanel extends VBox {
 	
 	private void nextWord() {
 		String nextWord = controller.showNextWord();
+		answer.setText("");
 		if (nextWord != null)
 			label.setText(nextWord);
 	}

@@ -61,7 +61,7 @@ public abstract class ResultPanel extends VBox {
 		label.setAlignment(Pos.CENTER);
 		back.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		        controller.changeView(Status.START);
+		        controller.changeView(Status.SELECT);
 		    }
 		});
 
@@ -91,7 +91,7 @@ public abstract class ResultPanel extends VBox {
 	    	    new PropertyValueFactory<Result,Integer>("totalNum")
 	    	);
 	    recitedColumn.setCellValueFactory(
-	    	    new PropertyValueFactory<Result,Integer>("total")
+	    	    new PropertyValueFactory<Result,Integer>("recited")
 	    	);
 	    correctColumn.setCellValueFactory(
 	    	    new PropertyValueFactory<Result,Integer>("correct")
@@ -103,8 +103,7 @@ public abstract class ResultPanel extends VBox {
 	    	    new PropertyValueFactory<Result,Double>("accuracy")
 	    	);
 	    table.setItems(data);
-	    table.getColumns().addAll(nameColumn, totalColumn,
-	    		recitedColumn, correctColumn, wrongColumn, accuracyColumn);
+	    table.getColumns().addAll(nameColumn, totalColumn, recitedColumn, correctColumn, wrongColumn, accuracyColumn);
 	    for (TableColumn<Result, ?> tc:table.getColumns()) {
 	    	tc.setMinWidth(83);
 	    }
@@ -122,23 +121,33 @@ public abstract class ResultPanel extends VBox {
 	}
 	
 	private void createChart() {
+		double per1 = 0;
+		double per2 = 0;
+		if (result.getRecited()!=0) {
+			per1 = (double)result.getCorrect()/(double)result.getRecited()*100;
+			per2 = (double)result.getWrong()/(double)result.getRecited()*100;
+		}
+		System.out.println("recited: "+result.getRecited());
 		ObservableList<PieChart.Data> pieChartData1 =
+				
                 FXCollections.observableArrayList(
-                new PieChart.Data("ÕýÈ·", result.getCorrect()/result.getRecited()*100),
-                new PieChart.Data("´íÎó", result.getWrong()/result.getRecited()*100));
+                new PieChart.Data("ÕýÈ·", per1),
+                new PieChart.Data("´íÎó", per2));
 
         chart1 = new PieChart(pieChartData1);
         chart1.setTitle("Accuracy");
         
         ObservableList<PieChart.Data> pieChartData2 =
                 FXCollections.observableArrayList(
-                new PieChart.Data("±³ËÐ", result.getRecited()/result.getTotalNum()*100),
-                new PieChart.Data("Î´±³ËÐ", (1-result.getRecited()/result.getTotalNum())*100));
+                new PieChart.Data("±³ËÐ", (double)result.getRecited()/(double)result.getTotalNum()*100),
+                new PieChart.Data("Î´±³ËÐ", (1-(double)result.getRecited()/(double)result.getTotalNum())*100));
 
         chart2 = new PieChart(pieChartData2);
         chart2.setTitle("Has Recited");
 	}
 	
-	
+	protected Controller getController() {
+		return controller;
+	}
 	
 }

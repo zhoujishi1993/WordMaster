@@ -1,5 +1,6 @@
 package view;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
@@ -15,6 +16,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -33,6 +36,7 @@ public class CSPanel extends VBox {
 	}
 	
 	private void init() {
+		type = 1;
 		createToolBar();
 		createListView();
 		createGridPane();
@@ -55,7 +59,8 @@ public class CSPanel extends VBox {
 		ok.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		    	if (isNumeric(count.getText())) {
-		    		if (!controller.setStartPos(type, word.getText())) {
+		    		System.out.println(type);
+		    		if (!controller.setStartPosition(type, word.getText())) {
 		    			JOptionPane.showMessageDialog(null,"输入单词有误，默认从第一个开始");
 		    		}
 		    		if (!controller.setReciteNum(Integer.parseInt(count.getText()))) {
@@ -138,9 +143,20 @@ public class CSPanel extends VBox {
 		        }
 		});
 		
-		word.setOnKeyTyped(new EventHandler<KeyEvent>() {
+		word.setOnKeyPressed(new EventHandler<KeyEvent>() {
 		    @Override public void handle(KeyEvent e) {
-		    	listView.setItems(FXCollections.observableArrayList(controller.getStartList(word.getText())));
+		    	System.out.println("prefix:"+word.getText());
+		    	System.out.println(e.getText());
+		    	String s = word.getText();
+		    	if (e.getCode().isLetterKey()) {
+		    		s = s + e.getText();
+		    	} else if (e.getCode().isWhitespaceKey()) {
+		    		s = s + " ";
+		    	} else if (e.getCode().equals(KeyCode.BACK_SPACE)) {
+		    		if (s!=null && !s.equals(""))
+		    			s = s.substring(0, s.length()-1);
+		    	}
+		    	listView.setItems(FXCollections.observableArrayList(controller.getStartList(s)));
 		    }
 		});
 		vbox.getChildren().add(rb1);

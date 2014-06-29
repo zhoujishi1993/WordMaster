@@ -15,7 +15,7 @@ public final class Result {
 
 	private SimpleStringProperty name;
 	private SimpleIntegerProperty totalNum;
-	private SimpleIntegerProperty total;
+	private SimpleIntegerProperty recited;
 	private SimpleIntegerProperty correct;
 	private SimpleIntegerProperty wrong;
 	private SimpleDoubleProperty accuracy;
@@ -35,12 +35,12 @@ public final class Result {
 	 * 			accuracy
 	 */
 
-	public Result(String name, int totalNum, int total, int correct, int wrong,
+	public Result(String name, int total, int recited, int correct, int wrong,
 			double accuracy) {
 		super();
 		this.name = new SimpleStringProperty(name);
-		this.totalNum = new SimpleIntegerProperty(totalNum);
-		this.total = new SimpleIntegerProperty(total);
+		this.totalNum = new SimpleIntegerProperty(total);
+		this.recited = new SimpleIntegerProperty(recited);
 		this.correct = new SimpleIntegerProperty(correct);
 		this.wrong = new SimpleIntegerProperty(wrong);
 		this.accuracy = new SimpleDoubleProperty(accuracy);
@@ -68,7 +68,7 @@ public final class Result {
 	 * @return recited
 	 */
 	public int getRecited() {
-		return total.get();
+		return recited.get();
 	}
 	
 	
@@ -92,14 +92,14 @@ public final class Result {
 	 * get accuracy
 	 * @return accuracy
 	 */
-	public double getAccurancy() {
+	public double getAccuracy() {
 		return accuracy.get();
 	}
 
 	@Override
 	public String toString() {
 		return "result [name=" + name + ", total=" + totalNum + ", recited="
-				+ total + ", correct=" + correct + ", wrong=" + wrong
+				+ recited + ", correct=" + correct + ", wrong=" + wrong
 				+ ", accuracy=" + accuracy	+ "]";
 
 	}

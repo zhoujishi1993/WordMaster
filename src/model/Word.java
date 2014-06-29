@@ -93,7 +93,8 @@ public class Word {
 	 * @param right default true
 	 */
 	public void setRight(boolean right) {
-		this.right = right;
+		if(!this.right)
+			this.right = right;
 	}
 	
 	/**
