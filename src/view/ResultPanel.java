@@ -74,12 +74,12 @@ public abstract class ResultPanel extends VBox {
 	
 	private void createTable() {
 		table = new TableView<Result>();
-		TableColumn<Result, String> nameColumn = new TableColumn<Result, String>("´Ê¿âÃû");
-	    TableColumn<Result, Integer> totalColumn = new TableColumn<Result, Integer>("´Ê¿âµ¥´Ê×ÜÊı");
-	    TableColumn<Result, Integer> recitedColumn = new TableColumn<Result, Integer>("ÒÑ±³µ¥´ÊÊı");
-	    TableColumn<Result, Integer> correctColumn = new TableColumn<Result, Integer>("ÕıÈ·µ¥´ÊÊı");
-	    TableColumn<Result, Integer> wrongColumn = new TableColumn<Result, Integer>("´íÎóµ¥´ÊÊı");
-	    TableColumn<Result, Double> accuracyColumn = new TableColumn<Result, Double>("ÕıÈ·ÂÊ");
+		TableColumn<Result, String> nameColumn = new TableColumn<Result, String>("è¯åº“å");
+	    TableColumn<Result, Integer> totalColumn = new TableColumn<Result, Integer>("è¯åº“å•è¯æ€»æ•°");
+	    TableColumn<Result, Integer> recitedColumn = new TableColumn<Result, Integer>("å·²èƒŒå•è¯æ•°");
+	    TableColumn<Result, Integer> correctColumn = new TableColumn<Result, Integer>("æ­£ç¡®å•è¯æ•°");
+	    TableColumn<Result, Integer> wrongColumn = new TableColumn<Result, Integer>("é”™è¯¯å•è¯æ•°");
+	    TableColumn<Result, Double> accuracyColumn = new TableColumn<Result, Double>("æ­£ç¡®ç‡");
 	    
 	    
 	       
@@ -131,16 +131,16 @@ public abstract class ResultPanel extends VBox {
 		ObservableList<PieChart.Data> pieChartData1 =
 				
                 FXCollections.observableArrayList(
-                new PieChart.Data("ÕıÈ·", per1),
-                new PieChart.Data("´íÎó", per2));
+                new PieChart.Data("æ­£ç¡®", per1),
+                new PieChart.Data("é”™è¯¯", per2));
 
         chart1 = new PieChart(pieChartData1);
         chart1.setTitle("Accuracy");
         
         ObservableList<PieChart.Data> pieChartData2 =
                 FXCollections.observableArrayList(
-                new PieChart.Data("±³ËĞ", (double)result.getRecited()/(double)result.getTotalNum()*100),
-                new PieChart.Data("Î´±³ËĞ", (1-(double)result.getRecited()/(double)result.getTotalNum())*100));
+                new PieChart.Data("èƒŒè¯µ", (double)result.getRecited()/(double)result.getTotalNum()*100),
+                new PieChart.Data("æœªèƒŒè¯µ", (1-(double)result.getRecited()/(double)result.getTotalNum())*100));
 
         chart2 = new PieChart(pieChartData2);
         chart2.setTitle("Has Recited");

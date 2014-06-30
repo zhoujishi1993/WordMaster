@@ -19,7 +19,7 @@ public class Controller {
 	private Result result;
 
 	
-	public Controller(Frame mainFrame){
+	public Controller(Frame mainFrame) throws Exception{
 		   this.mainFrame = mainFrame;
 		   user = new User("default");
 		   lexiconSheet = new LexiconSheet();

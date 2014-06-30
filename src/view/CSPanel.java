@@ -46,7 +46,7 @@ public class CSPanel extends VBox {
 	
 	private void createToolBar() {
 		Button back = new Button("Back");
-		Label label = new Label("±³ËĞÑ¡Ïî");
+		Label label = new Label("èƒŒè¯µé€‰é¡¹");
 		Button ok = new Button("OK");
 		label.setPrefWidth(380);
 		label.setAlignment(Pos.CENTER);
@@ -61,16 +61,16 @@ public class CSPanel extends VBox {
 		    	if (isNumeric(count.getText())) {
 		    		System.out.println(type);
 		    		if (!controller.setStartPosition(type, word.getText())) {
-		    			JOptionPane.showMessageDialog(null,"ÊäÈëµ¥´ÊÓĞÎó£¬Ä¬ÈÏ´ÓµÚÒ»¸ö¿ªÊ¼");
+		    			JOptionPane.showMessageDialog(null,"è¾“å…¥å•è¯æœ‰è¯¯ï¼Œé»˜è®¤ä»ç¬¬ä¸€ä¸ªå¼€å§‹");
 		    		}
 		    		if (!controller.setReciteNum(Integer.parseInt(count.getText()))) {
-		    			JOptionPane.showMessageDialog(null,"ÊäÈëÊıÁ¿³¬¹ıÊ£Óàµ¥´ÊÊıÁ¿£¬Ä¬ÈÏ±³µ½×îºóÒ»¸öÎªÖ¹");
+		    			JOptionPane.showMessageDialog(null,"è¾“å…¥æ•°é‡è¶…è¿‡å‰©ä½™å•è¯æ•°é‡ï¼Œé»˜è®¤èƒŒåˆ°æœ€åä¸€ä¸ªä¸ºæ­¢Ö¹");
 		    		}
 		    		
 		    		controller.changeView(Status.RECITE);
 		    		
 		    	} else {
-		    		JOptionPane.showMessageDialog(null,"ÊäÈëµ¥´ÊÊıÁ¿²»ºÏ·¨£¬ÇëÖØĞÂÊäÈë");
+		    		JOptionPane.showMessageDialog(null,"è¾“å…¥å•è¯æ•°é‡ä¸åˆæ³•ï¼Œè¯·é‡æ–°è¾“å…¥");
 		    	}
 		    }
 		});
@@ -98,8 +98,8 @@ public class CSPanel extends VBox {
 		word = new TextField();
 		word.setEditable(false);
 		count = new TextField();
-		Label countLabel = new Label("ÊäÈëÒª±³µÄµ¥´ÊÊı");
-		Label modeLabel = new Label("Ñ¡Ôñ±³ËĞÄ£Ê½");
+		Label countLabel = new Label("è¾“å…¥è¦èƒŒçš„å•è¯æ•°");
+		Label modeLabel = new Label("é€‰æ‹©èƒŒè¯µæ¨¡å¼");
 		VBox vbox = new VBox();
 		vbox.getChildren().add(countLabel);
 		vbox.getChildren().add(count);
@@ -112,16 +112,16 @@ public class CSPanel extends VBox {
 		
 		final ToggleGroup group = new ToggleGroup();
 
-		RadioButton rb1 = new RadioButton("´ÓÍ·¿ªÊ¼");
+		RadioButton rb1 = new RadioButton("ä»å¤´å¼€å§‹");
 		rb1.setToggleGroup(group);
 		rb1.setSelected(true);
 		rb1.setUserData("rb1");
 
-		RadioButton rb2 = new RadioButton("´ÓÉÏÒ»´Î±³µ½µÄµ¥´Ê¿ªÊ¼");
+		RadioButton rb2 = new RadioButton("ä»ä¸Šä¸€æ¬¡èƒŒåˆ°çš„å•è¯å¼€å§‹");
 		rb2.setToggleGroup(group);
 		rb2.setUserData("rb2");
 		 
-		RadioButton rb3 = new RadioButton("×ÔÑ¡");
+		RadioButton rb3 = new RadioButton("è‡ªé€‰");
 		rb3.setToggleGroup(group);
 		rb3.setUserData("rb3");
 		
@@ -166,7 +166,7 @@ public class CSPanel extends VBox {
 	//	gridPane.add(rb1, 1, 3);
 	//	gridPane.add(rb2, 1, 3);
 	//	gridPane.add(rb3, 1, 3);
-		Button resultButton = new Button("²é¿´±³ËĞÍ³¼ÆĞÅÏ¢");
+		Button resultButton = new Button("æŸ¥çœ‹èƒŒè¯µç»Ÿè®¡ä¿¡æ¯");
 		
 		resultButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {

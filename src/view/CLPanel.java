@@ -28,7 +28,7 @@ public class CLPanel extends VBox {
 	
 	private void createToolBar() {
 		Button back = new Button("Back");
-		Label label = new Label("ѡ��ʿ�");
+		Label label = new Label("选择词库");
 		Button ok = new Button("OK");
 		label.setPrefWidth(380);
 		label.setAlignment(Pos.CENTER);

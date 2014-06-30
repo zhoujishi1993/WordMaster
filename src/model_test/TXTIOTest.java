@@ -48,7 +48,7 @@ public class TXTIOTest {
 	}
 
 	@Test
-	public void testNewUserLexicon() {
+	public void testNewUserLexicon() throws Exception {
 		String username = "default";
 		io.newUserLexicon(username);
 		File dir = new File(username);
@@ -69,7 +69,7 @@ public class TXTIOTest {
 	}
 	
 	@Test
-	public void testNewUserLexiconUserExisted() {
+	public void testNewUserLexiconUserExisted() throws Exception {
 		String username = "default";
 		io.newUserLexicon(username);
 		File dir = new File(username);

@@ -13,11 +13,12 @@ public class User {
 	/**
 	 * constructor
 	 * @param name name of user
+     * @throws java.lang.Exception
 	 */
-	public User(String name) {
+	public User(String name) throws Exception {
 		super();
 		this.name = name;
-		io = new TXTIO();
+		io = new XMLIO();
 		io.newUserLexicon(name);
 	}
 	

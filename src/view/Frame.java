@@ -1,6 +1,8 @@
 package view;
 
 import controller.Controller;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 public class Frame extends Application{
 
@@ -31,7 +34,13 @@ public class Frame extends Application{
      }
     
     public Frame() {
-    	this.controller = new Controller(this);
+            try {
+                this.controller = new Controller(this);
+            } catch (Exception ex) {
+                Logger.getLogger(Frame.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+                System.exit(0);
+            }
     }
     
 	

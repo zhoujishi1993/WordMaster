@@ -24,10 +24,10 @@ public class WelcomePanel extends BorderPane {
 	
 	private void init() {
 		Text t = new Text("Word Master");
-		Text t2 = new Text("史上最简洁易用的单词背诵软件");
-		t.setFont(Font.font("微软雅黑",50));
-		t2.setFont(Font.font("微软雅黑",30));
-		Button btn = new Button("进入");
+		Text t2 = new Text("鍙蹭笂鏈�绠�娲佹槗鐢ㄧ殑鍗曡瘝鑳岃杞欢");
+		t.setFont(Font.font("寰蒋闆呴粦",50));
+		t2.setFont(Font.font("寰蒋闆呴粦",30));
+		Button btn = new Button("杩涘叆");
 		btn.setAlignment(Pos.CENTER);
 		btn.setPrefSize(70, 35);
 		btn.setOnAction(new EventHandler<ActionEvent>() {

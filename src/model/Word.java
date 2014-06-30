@@ -109,7 +109,7 @@ public class Word implements Serializable {
 	
 	@Override
 	public String toString() {
-		//return this.english+" "+this.chinese+" "+this.recited+" "+this.right+" "+this.start;
-		return "<word><english>"+this.english+"</english><chinese>"+this.chinese+"</chinese><recited>"+this.recited+"</recited><right>"+this.right+"</right><start>"+this.start+"</start></word>";
+		return this.english+" "+this.chinese+" "+this.recited+" "+this.right+" "+this.start;
+		//return "<word><english>"+this.english+"</english><chinese>"+this.chinese+"</chinese><recited>"+this.recited+"</recited><right>"+this.right+"</right><start>"+this.start+"</start></word>";
 	}
 }

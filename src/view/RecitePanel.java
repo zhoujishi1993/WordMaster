@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javax.swing.JOptionPane;
 
 public class RecitePanel extends VBox {
 	private Controller controller;
@@ -36,7 +37,7 @@ public class RecitePanel extends VBox {
 		
 		if (nextWord != null)
 			label.setText(nextWord);
-		label.setFont(Font.font("Î¢ÈíÑÅºÚ", 30));
+		label.setFont(Font.font("å¾®è½¯é›…é»‘", 30));
 		this.getChildren().add(label);		
 		this.getChildren().add(answer);
 		this.getChildren().add(btn);
@@ -56,13 +57,17 @@ public class RecitePanel extends VBox {
 		
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
+                        if(answer.getText()==null || answer.getText().equals("")) {
+                            JOptionPane.showMessageDialog(null, "è¾“å…¥ä¸èƒ½ä¸ºç©º");
+                            return;
+                        }
 		    	boolean correct;
 		        correct = controller.newInputWord(answer.getText());
 		        if (!correct) {
-		        	result.setText("´íÎó£¡");
+		        	result.setText("é”™è¯¯ï¼");
 		        	result.setFill(Color.RED);
 		        } else {
-		        	result.setText("ÕıÈ·£¡");
+		        	result.setText("æ­£ç¡®ï¼");
 		        	result.setFill(Color.GREEN);
 		        }
 		        nextWord();
@@ -81,7 +86,7 @@ public class RecitePanel extends VBox {
 	
 	private void createToolBar() {
 		Button back = new Button("Back");
-		Label label = new Label("¿ªÊ¼±³ËĞ");
+		Label label = new Label("å¼€å§‹èƒŒè¯µ");
 
 		label.setPrefWidth(380);
 		label.setAlignment(Pos.CENTER);

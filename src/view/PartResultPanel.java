@@ -18,7 +18,7 @@ public class PartResultPanel extends ResultPanel {
 	
 	@Override
 	protected void loadLabel() {
-		setLabel("本次背诵情况");
+		setLabel("鏈鑳岃鎯呭喌");
 	}
 
 }

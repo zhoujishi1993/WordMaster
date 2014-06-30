@@ -20,7 +20,7 @@ public interface IO {
 	 * new user lexicon
 	 * @param username name of user
 	 */
-	void newUserLexicon(String username);
+	void newUserLexicon(String username) throws Exception;
 	
 	/**
 	 * write lexicon

@@ -18,7 +18,7 @@ public class TotalResultPanel extends ResultPanel {
 	
 	@Override
 	protected void loadLabel() {
-		setLabel("±¾´Ê¿â±³ËĞÇé¿ö");
+		setLabel("æœ¬è¯åº“èƒŒè¯µæƒ…å†µ");
 	}
 
 }
